@@ -3,7 +3,7 @@
 */
 export type CartItem = {
     // a unique identifier representing this item in a shopping cart
-    cartItemId: string;
+    cartItemId?: string;
 
     // the identifier of the shopping cart this item belongs in
     cartId: string;

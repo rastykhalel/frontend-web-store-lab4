@@ -3,7 +3,7 @@
 */
 export type Product = {
     // a unique identifier representing this product
-    productId: string;
+    productId?: string;
 
     // the name of the product
     name: string;
