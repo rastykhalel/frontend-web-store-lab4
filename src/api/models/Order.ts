@@ -3,7 +3,7 @@
 */
 export type Order = {
     // a unique identifier representing this order
-    orderId: string;
+    orderId?: string;
 
     // the cart identifier
     cartId: string;
