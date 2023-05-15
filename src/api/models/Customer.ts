@@ -3,7 +3,7 @@
 */
 export type Customer = {
     // a unique identifier representing this customer
-    customerId: string;
+    customerId?: string;
 
     // the customer's full name
     name: string;
