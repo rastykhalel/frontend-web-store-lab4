@@ -3,6 +3,7 @@ import { httpClient } from './HTTPClient';
 import { Cart } from '../models/Cart';
 import { CartItem } from '../models/CartItem';
 import { Customer } from '../models/Customer';
+import { Order } from '../models/Order';
 import { Product } from '../models/Product';
 
 class APIClient {
@@ -141,8 +142,29 @@ class APIClient {
             });
         });
     }
+
+    async placeOrder(cartId: string, order: Order): Promise<Order> {
+        return new Promise<Order> ((resolve, reject) => {
+            httpClient.post<Order>(`/cart/${cartId}/order`).then((res) => {
+                resolve(res.data)
+            }).catch((err) => {
+                reject(err);
+            });
+        });
+    }
     
     /* Order endpoints ************************************************************************/
+
+    // get a specific order by id
+    async getOrderById(orderId: string): Promise<Order> {
+        return new Promise<Order> ((resolve, reject) => {
+            httpClient.get<Order>(`/order/${orderId}`).then((res) => {
+                resolve(res.data)
+            }).catch((err) => {
+                reject(err);
+            });
+        });
+    }
 
 }
 
