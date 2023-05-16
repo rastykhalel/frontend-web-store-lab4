@@ -8,8 +8,8 @@ export type Order = {
     // the cart identifier
     cartId: string;
 
-    // the order name
-    name: number;
+    // the customer name
+    name: string;
 
     // the credit card number
     creditCard: string;
