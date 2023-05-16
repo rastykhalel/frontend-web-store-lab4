@@ -26,6 +26,7 @@ export const ShoppingCart = () => {
             setCartItems(cartItems);
         });
 
+        /*
         setCartItems([
             {
                 cartItemId: "1",
@@ -46,6 +47,7 @@ export const ShoppingCart = () => {
                 price: 21
             },
         ]);
+        */
     }, [cartId])
 
     useEffect(() => {
