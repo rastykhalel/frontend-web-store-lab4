@@ -2,9 +2,9 @@ import { httpClient } from './HTTPClient';
 
 import { Cart } from '../models/Cart';
 import { CartItem } from '../models/CartItem';
-import { Customer } from '../models/Customer';
 import { Order } from '../models/Order';
 import { Product } from '../models/Product';
+import { User } from '../models/User';
 
 class APIClient {
     /* Product endpoints **********************************************************************/
@@ -64,11 +64,11 @@ class APIClient {
         });
     }
 
-    /* Customer endpoints *********************************************************************/
+    /* User endpoints *********************************************************************/
 
-    async createCustomer(customer: Customer): Promise<Customer> {
-        return new Promise<Customer> ((resolve, reject) => {
-            httpClient.post<Customer>(`/customer`, customer).then((res) => {
+    async createUser(user: User): Promise<User> {
+        return new Promise<User> ((resolve, reject) => {
+            httpClient.post<User>(`/user`, user).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
                 reject(err);
