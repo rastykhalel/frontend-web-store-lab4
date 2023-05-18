@@ -91,32 +91,10 @@ class APIClient {
 
     /* Cart endpoints *************************************************************************/
 
-    // create a new cart
-    async createCart(): Promise<Cart> {
-        return new Promise<Cart> ((resolve, reject) => {
-            httpClient.post<Cart>(`/cart`).then((res) => {
-                resolve(res.data)
-            }).catch((err) => {
-                reject(new Error(err.response.data.message || "Unknown error"));
-            });
-        });
-    }
-
-    // get a specific cart by id
-    async getCartById(cartId: string): Promise<Cart> {
-        return new Promise<Cart> ((resolve, reject) => {
-            httpClient.get<Cart>(`/cart/${cartId}`).then((res) => {
-                resolve(res.data)
-            }).catch((err) => {
-                reject(new Error(err.response.data.message || "Unknown error"));
-            });
-        });
-    }
-
     // add item to cart
-    async addItemToCart(cartId: string, item: CartItem): Promise<CartItem> {
+    async addItemToCart(item: CartItem): Promise<CartItem> {
         return new Promise<CartItem> ((resolve, reject) => {
-            httpClient.put<CartItem>(`/cart/${cartId}/item`, item).then((res) => {
+            httpClient.put<CartItem>(`/cart/add`, item).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
                 reject(new Error(err.response.data.message || "Unknown error"));
@@ -125,9 +103,9 @@ class APIClient {
     }
 
     // get a list of all items in a cart
-    async getItemsInCart(cartId: string): Promise<CartItem[]> {
+    async getItemsInCart(): Promise<CartItem[]> {
         return new Promise<CartItem[]> ((resolve, reject) => {
-            httpClient.get<CartItem[]>(`/cart/${cartId}/items`).then((res) => {
+            httpClient.get<CartItem[]>(`/cart/items`).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
                 reject(new Error(err.response.data.message || "Unknown error"));
@@ -136,9 +114,9 @@ class APIClient {
     }
 
     // get a specific item from a cart by id
-    async getItemInCart(cartId: string, itemId: string): Promise<CartItem> {
+    async getItemInCart(itemId: string): Promise<CartItem> {
         return new Promise<CartItem> ((resolve, reject) => {
-            httpClient.get<CartItem>(`/cart/${cartId}/item/${itemId}`).then((res) => {
+            httpClient.get<CartItem>(`/cart/item/${itemId}`).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
                 reject(new Error(err.response.data.message || "Unknown error"));
@@ -146,19 +124,9 @@ class APIClient {
         });
     }
 
-    async removeItemFromCart(cartId: string, itemId: string): Promise<CartItem> {
+    async removeItemFromCart(itemId: string): Promise<CartItem> {
         return new Promise<CartItem> ((resolve, reject) => {
-            httpClient.delete<CartItem>(`/cart/${cartId}/item/${itemId}`).then((res) => {
-                resolve(res.data)
-            }).catch((err) => {
-                reject(new Error(err.response.data.message || "Unknown error"));
-            });
-        });
-    }
-
-    async placeOrder(cartId: string, order: Order): Promise<Order> {
-        return new Promise<Order> ((resolve, reject) => {
-            httpClient.post<Order>(`/cart/${cartId}/order`).then((res) => {
+            httpClient.delete<CartItem>(`/cart/item/${itemId}`).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
                 reject(new Error(err.response.data.message || "Unknown error"));
@@ -167,6 +135,16 @@ class APIClient {
     }
     
     /* Order endpoints ************************************************************************/
+
+    async placeOrder(): Promise<Order> {
+        return new Promise<Order> ((resolve, reject) => {
+            httpClient.post<Order>(`/order`).then((res) => {
+                resolve(res.data)
+            }).catch((err) => {
+                reject(new Error(err.response.data.message || "Unknown error"));
+            });
+        });
+    }
 
     // get a specific order by id
     async getOrderById(orderId: string): Promise<Order> {
