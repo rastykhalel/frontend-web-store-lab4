@@ -105,7 +105,7 @@ class APIClient {
     // get a list of all items in a cart
     async getItemsInCart(): Promise<CartItem[]> {
         return new Promise<CartItem[]> ((resolve, reject) => {
-            httpClient.get<CartItem[]>(`/cart/items`).then((res) => {
+            httpClient.get<CartItem[]>(`/cart`).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
                 reject(new Error(err.response.data.message || "Unknown error"));
