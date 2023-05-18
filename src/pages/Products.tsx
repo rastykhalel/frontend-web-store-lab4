@@ -5,7 +5,7 @@ import { ProductCard } from '../components/ProductCard';
 
 import { Product } from '../api/models/Product';
 import { apiClient } from '../api/client/APIClient';
-  
+
 export const Products = () => {
     const [cartId, setCartId] = useState<string>("");
     const [products, setProducts] = useState<Product[]>([]);
@@ -60,7 +60,7 @@ export const Products = () => {
             <Container className="d-flex flex-wrap p-3 justify-content-center">
                 {
                     products.map((product) => 
-                        <div className="p-2">
+                        <div className="p-2 col-md-4 col-sm-12">
                             <ProductCard
                                 key={product.productId}
                                 product={product}
