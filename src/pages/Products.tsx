@@ -48,7 +48,7 @@ export const Products = () => {
 
     const addToCart = (product: Product) => {
         apiClient.addItemToCart({
-            product_id: product.productId!!,
+            product_id: product.id!!,
             quantity: 1
         });
     }
@@ -61,7 +61,7 @@ export const Products = () => {
                     products.map((product) => 
                         <div className="p-2 col-md-4 col-sm-12">
                             <ProductCard
-                                key={product.productId}
+                                key={product.id}
                                 product={product}
                                 addToCart={addToCart}
                             />
