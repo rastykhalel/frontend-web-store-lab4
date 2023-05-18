@@ -1,8 +1,10 @@
+import { LoginForm } from '../components/LoginForm';
+
 export const Login = () => {
     return (
         <>
-            {/* TODO: Replace the login page content. */}
             <h1>Login</h1>
+            <LoginForm />
         </>
     );
 };
