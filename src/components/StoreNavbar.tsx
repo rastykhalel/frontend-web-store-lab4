@@ -32,9 +32,13 @@ export const StoreNavbar = ({
                     </NavItem>
                 </Nav>
             </Collapse>
-            <NavLink href="/cart">
-                <BagFill color="white" />
-            </NavLink>
+            <Nav className="me-auto" navbar>
+                <NavLink href="/signup">Sign up</NavLink>
+                <NavLink href="/login">Login</NavLink>
+                <NavLink href="/cart">
+                    <BagFill color="white" />
+                </NavLink>
+            </Nav>
         </Navbar>
     );
 };
