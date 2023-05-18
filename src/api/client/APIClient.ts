@@ -89,6 +89,26 @@ class APIClient {
         });
     }
 
+    async logoutUser(): Promise<void> {
+        return new Promise<void> ((resolve, reject) => {
+            httpClient.post<void>(`/logout`).then((res) => {
+                resolve(res.data)
+            }).catch((err) => {
+                reject(new Error(err.response.data.message || "Unknown error"));
+            });
+        });
+    }
+
+    async getUser(): Promise<User> {
+        return new Promise<User> ((resolve, reject) => {
+            httpClient.get<User>(`/user`).then((res) => {
+                resolve(res.data)
+            }).catch((err) => {
+                reject(new Error(err.response.data.message || "Unknown error"));
+            });
+        });
+    }
+
     /* Cart endpoints *************************************************************************/
 
     // add item to cart
