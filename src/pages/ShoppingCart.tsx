@@ -86,6 +86,7 @@ export const ShoppingCart = () => {
                         <tr>
                             <th>Product</th>
                             <th>Price</th>
+                            <th>Qty</th>
                             <th>Action</th>
                         </tr>
                     </thead>

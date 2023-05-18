@@ -43,6 +43,7 @@ export const ShoppingCartItem = ({
         <tr>
             <th scope="row">{product?.name}</th>
             <td>{currencyFormatter.format(product?.price || 0)}</td>
+            <td>{cartItem.quantity}</td>
             <td>
                 <Button color="danger" onClick={() => { removeFromCart(cartItem) }}>
                     <Trash3Fill color="white" />
