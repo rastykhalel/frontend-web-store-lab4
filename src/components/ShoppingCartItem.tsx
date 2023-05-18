@@ -6,6 +6,11 @@ import { CartItem } from '../api/models/CartItem';
 import { Product } from '../api/models/Product';
 import { apiClient } from '../api/client/APIClient';
 
+const currencyFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+});
+
 export interface ShoppingCartItemProps {
     cartItem: CartItem;
     removeFromCart: (cartItem: CartItem) => void;
@@ -37,7 +42,7 @@ export const ShoppingCartItem = ({
     return(
         <tr>
             <th scope="row">{product?.name}</th>
-            <td>${product?.price}</td>
+            <td>{currencyFormatter.format(product?.price || 0)}</td>
             <td>
                 <Button color="danger" onClick={() => { removeFromCart(cartItem) }}>
                     <Trash3Fill color="white" />
