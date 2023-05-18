@@ -20,7 +20,7 @@ export const ShoppingCart = () => {
             setCartItems(cartItems);
         });
 
-        
+        /*
         setCartItems([
             {
                 id: "1",
@@ -38,7 +38,7 @@ export const ShoppingCart = () => {
                 quantity: 5
             },
         ]);
-        
+        */
     }, []);
 
     useEffect(() => {

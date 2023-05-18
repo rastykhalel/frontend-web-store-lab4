@@ -23,6 +23,7 @@ export const ShoppingCartItem = ({
             setProduct(product);
         });
 
+        /*
         setProduct({
             id: "1",
             name: "Product 1",
@@ -30,6 +31,7 @@ export const ShoppingCartItem = ({
             price: 100,
             image_url: "https://picsum.photos/300/200?id=1",
         });
+        */
     }, []);
 
     return(
