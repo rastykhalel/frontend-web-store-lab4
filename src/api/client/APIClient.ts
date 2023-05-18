@@ -15,7 +15,7 @@ class APIClient {
             httpClient.get<Product[]>(`/products`).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
-                reject(err);
+                reject(new Error(err.response.data.message || "Unknown error"));
             });
         });
     }
@@ -26,7 +26,7 @@ class APIClient {
             httpClient.post<Product>(`/product`, product).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
-                reject(err);
+                reject(new Error(err.response.data.message || "Unknown error"));
             });
         });
     }
@@ -37,7 +37,7 @@ class APIClient {
             httpClient.get<Product>(`/product/${productId}`).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
-                reject(err);
+                reject(new Error(err.response.data.message || "Unknown error"));
             });
         });
     }
@@ -48,7 +48,7 @@ class APIClient {
             httpClient.put<Product>(`/product/${product.productId}`, product).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
-                reject(err);
+                reject(new Error(err.response.data.message || "Unknown error"));
             });
         });
     }
@@ -59,7 +59,7 @@ class APIClient {
             httpClient.delete<Product>(`/product/${productId}`).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
-                reject(err);
+                reject(new Error(err.response.data.message || "Unknown error"));
             });
         });
     }
@@ -71,7 +71,7 @@ class APIClient {
             httpClient.post<User>(`/user`, user).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
-                reject(err);
+                reject(new Error(err.response.data.message || "Unknown error"));
             });
         });
     }
@@ -84,7 +84,7 @@ class APIClient {
             httpClient.post<Cart>(`/cart`).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
-                reject(err);
+                reject(new Error(err.response.data.message || "Unknown error"));
             });
         });
     }
@@ -95,7 +95,7 @@ class APIClient {
             httpClient.get<Cart>(`/cart/${cartId}`).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
-                reject(err);
+                reject(new Error(err.response.data.message || "Unknown error"));
             });
         });
     }
@@ -106,7 +106,7 @@ class APIClient {
             httpClient.put<CartItem>(`/cart/${cartId}/item`, item).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
-                reject(err);
+                reject(new Error(err.response.data.message || "Unknown error"));
             });
         });
     }
@@ -117,7 +117,7 @@ class APIClient {
             httpClient.get<CartItem[]>(`/cart/${cartId}/items`).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
-                reject(err);
+                reject(new Error(err.response.data.message || "Unknown error"));
             });
         });
     }
@@ -128,7 +128,7 @@ class APIClient {
             httpClient.get<CartItem>(`/cart/${cartId}/item/${itemId}`).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
-                reject(err);
+                reject(new Error(err.response.data.message || "Unknown error"));
             });
         });
     }
@@ -138,7 +138,7 @@ class APIClient {
             httpClient.delete<CartItem>(`/cart/${cartId}/item/${itemId}`).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
-                reject(err);
+                reject(new Error(err.response.data.message || "Unknown error"));
             });
         });
     }
@@ -148,7 +148,7 @@ class APIClient {
             httpClient.post<Order>(`/cart/${cartId}/order`).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
-                reject(err);
+                reject(new Error(err.response.data.message || "Unknown error"));
             });
         });
     }
@@ -161,7 +161,7 @@ class APIClient {
             httpClient.get<Order>(`/order/${orderId}`).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
-                reject(err);
+                reject(new Error(err.response.data.message || "Unknown error"));
             });
         });
     }
