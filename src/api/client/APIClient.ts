@@ -76,6 +76,19 @@ class APIClient {
         });
     }
 
+    async loginUser(email: string, password: string): Promise<User> {
+        return new Promise<User> ((resolve, reject) => {
+            httpClient.post<any>(`/login`, {
+                email: email, 
+                password: password,
+            }).then((res) => {
+                resolve(res.data)
+            }).catch((err) => {
+                reject(new Error(err.response.data.message || "Unknown error"));
+            });
+        });
+    }
+
     /* Cart endpoints *************************************************************************/
 
     // create a new cart
