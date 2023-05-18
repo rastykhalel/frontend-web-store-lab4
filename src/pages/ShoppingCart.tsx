@@ -7,15 +7,12 @@ import { ShoppingCartItem } from '../components/ShoppingCartItem';
 
 import { CartItem } from '../api/models/CartItem';
 import { Product } from '../api/models/Product';
-import { User } from '../api/models/User';
 import { apiClient } from '../api/client/APIClient';
 
 export const ShoppingCart = () => {
-    const [user, setUser] = useState<User>();
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const [cartItemProducts, setCartItemProducts] = useState<Product[]>([]);
     const [cartSubTotal, setCartSubTotal] = useState<number>(0);
-    const [creditCardNumber, setCreditCardNumber] = useState<string>("");
 
     useEffect(() => {
         apiClient.getItemsInCart().then((cartItems) => {
