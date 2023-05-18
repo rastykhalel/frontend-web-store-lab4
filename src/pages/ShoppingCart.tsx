@@ -6,18 +6,18 @@ import { OrderSummary } from '../components/OrderSummary';
 import { ShoppingCartItem } from '../components/ShoppingCartItem';
 
 import { CartItem } from '../api/models/CartItem';
-import { Customer } from '../api/models/Customer';
+import { User } from '../api/models/User';
 import { apiClient } from '../api/client/APIClient';
 
 export const ShoppingCart = () => {
-    const [customer, setCustomer] = useState<Customer>();
+    const [user, setUser] = useState<User>();
     const [cartId, setCartId] = useState<string>("");
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const [cartSubTotal, setCartSubTotal] = useState<number>(0);
     const [creditCardNumber, setCreditCardNumber] = useState<string>("");
 
     useEffect(() => {
-        // TODO: get the customer???
+        // TODO: get the user???
         // TODO: get the cartId???
     }, []);
 
@@ -69,9 +69,9 @@ export const ShoppingCart = () => {
     const placeOrder = () => {
         apiClient.placeOrder(cartId, {
             cartId: cartId,
-            name: customer?.name!!,
+            name: user?.name!!,
             creditCard: creditCardNumber,
-            shippingAddress: customer?.address!!,
+            shippingAddress: "" /* TODO user?.address!!*/,
             createdAt: new Date()
         }).then(() => {
             setCartItems([]);
