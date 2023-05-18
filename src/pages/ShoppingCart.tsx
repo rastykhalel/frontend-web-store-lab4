@@ -11,69 +11,54 @@ import { apiClient } from '../api/client/APIClient';
 
 export const ShoppingCart = () => {
     const [user, setUser] = useState<User>();
-    const [cartId, setCartId] = useState<string>("");
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const [cartSubTotal, setCartSubTotal] = useState<number>(0);
     const [creditCardNumber, setCreditCardNumber] = useState<string>("");
 
     useEffect(() => {
-        // TODO: get the user???
-        // TODO: get the cartId???
-    }, []);
-
-    useEffect(() => {
-        apiClient.getItemsInCart(cartId).then((cartItems) => {
+        apiClient.getItemsInCart().then((cartItems) => {
             setCartItems(cartItems);
         });
 
-        /*
+        
         setCartItems([
             {
-                cartItemId: "1",
-                cartId: cartId,
-                productId: "1",
-                price: 122
+                id: "1",
+                product_id: "1",
+                quantity: 1
             },
             {
-                cartItemId: "2",
-                cartId: cartId,
-                productId: "2",
-                price: 86
+                id: "2",
+                product_id: "2",
+                quantity: 2
             },
             {
-                cartItemId: "3",
-                cartId: cartId,
-                productId: "3",
-                price: 21
+                id: "3",
+                product_id: "3",
+                quantity: 5
             },
         ]);
-        */
-    }, [cartId]);
+        
+    }, []);
 
     useEffect(() => {
         updateSubTotal();
     }, [cartItems]);
 
     const updateSubTotal = () => {
-        setCartSubTotal(cartItems.map(item => item.price).reduce((a, b) => { return a + b; }, 0));
+        // TODO: setCartSubTotal(cartItems.map(item => item.price).reduce((a, b) => { return a + b; }, 0));
     }
 
     const removeFromCart = (cartItem: CartItem) => {
-        let id = cartItem.cartItemId!!;
-        apiClient.removeItemFromCart(cartId, id).then(() => {
-            setCartItems(cartItems.filter(item => item.cartItemId != id ));
+        let id = cartItem.id!!;
+        apiClient.removeItemFromCart(id).then(() => {
+            setCartItems(cartItems.filter(item => item.id != id ));
         });
-        setCartItems(cartItems.filter(item => item.cartItemId != id ));
+        setCartItems(cartItems.filter(item => item.id != id ));
     }
 
     const placeOrder = () => {
-        apiClient.placeOrder(cartId, {
-            cartId: cartId,
-            name: user?.name!!,
-            creditCard: creditCardNumber,
-            shippingAddress: "" /* TODO user?.address!!*/,
-            createdAt: new Date()
-        }).then(() => {
+        apiClient.placeOrder().then(() => {
             setCartItems([]);
         });
     }
@@ -95,7 +80,7 @@ export const ShoppingCart = () => {
                     {
                         cartItems.map((cartItem) => 
                             <ShoppingCartItem
-                                key={cartItem.cartItemId}
+                                key={cartItem.id}
                                 cartItem={cartItem}
                                 removeFromCart={removeFromCart}
                             />

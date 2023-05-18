@@ -45,7 +45,7 @@ class APIClient {
     // update an exiting product
     async updateProduct(product: Product): Promise<Product> {
         return new Promise<Product> ((resolve, reject) => {
-            httpClient.put<Product>(`/product/${product.productId}`, product).then((res) => {
+            httpClient.put<Product>(`/product/${product.id}`, product).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
                 reject(new Error(err.response.data.message || "Unknown error"));
@@ -94,7 +94,7 @@ class APIClient {
     // add item to cart
     async addItemToCart(item: CartItem): Promise<CartItem> {
         return new Promise<CartItem> ((resolve, reject) => {
-            httpClient.put<CartItem>(`/cart/add`, item).then((res) => {
+            httpClient.post<CartItem>(`/cart/add`, item).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
                 reject(new Error(err.response.data.message || "Unknown error"));

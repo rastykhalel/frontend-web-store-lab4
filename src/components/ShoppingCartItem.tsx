@@ -19,23 +19,23 @@ export const ShoppingCartItem = ({
     const [product, setProduct] = useState<Product>();
 
     useEffect(() => {
-        apiClient.getProductById(cartItem.productId).then((product) => {
+        apiClient.getProductById(cartItem.product_id).then((product) => {
             setProduct(product);
         });
 
         setProduct({
-            productId: "1",
+            id: "1",
             name: "Product 1",
             description: "This is a test product. This is product #1.",
             price: 100,
-            image: "https://picsum.photos/300/200?id=1",
+            image_url: "https://picsum.photos/300/200?id=1",
         });
     }, []);
 
     return(
         <tr>
             <th scope="row">{product?.name}</th>
-            <td>${cartItem.price}</td>
+            <td>${product?.price}</td>
             <td>
                 <Button color="danger" onClick={() => { removeFromCart(cartItem) }}>
                     <Trash3Fill color="white" />
