@@ -3,7 +3,8 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 class HTTPClient {
   // create the AXIOS config with the base URL for the backend service
   private axiosConfig: AxiosRequestConfig = {
-    baseURL: "http://localhost:8080"
+    baseURL: "http://localhost:8080",
+    withCredentials: true,
   };
 
   // create the AXIOS client instance
