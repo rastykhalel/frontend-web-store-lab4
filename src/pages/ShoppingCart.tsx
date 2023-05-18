@@ -6,12 +6,14 @@ import { OrderSummary } from '../components/OrderSummary';
 import { ShoppingCartItem } from '../components/ShoppingCartItem';
 
 import { CartItem } from '../api/models/CartItem';
+import { Product } from '../api/models/Product';
 import { User } from '../api/models/User';
 import { apiClient } from '../api/client/APIClient';
 
 export const ShoppingCart = () => {
     const [user, setUser] = useState<User>();
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
+    const [cartItemProducts, setCartItemProducts] = useState<Product[]>([]);
     const [cartSubTotal, setCartSubTotal] = useState<number>(0);
     const [creditCardNumber, setCreditCardNumber] = useState<string>("");
 
@@ -42,11 +44,23 @@ export const ShoppingCart = () => {
     }, []);
 
     useEffect(() => {
-        updateSubTotal();
+        Promise.all(cartItems.map(async (cartIt) => 
+            await apiClient.getProductById(cartIt.product_id)
+        )).then((products) => {
+            setCartItemProducts(products);
+        });
     }, [cartItems]);
 
+    useEffect(() => {
+        updateSubTotal();
+    }, [cartItems, cartItemProducts]);
+
     const updateSubTotal = () => {
-        // TODO: setCartSubTotal(cartItems.map(item => item.price).reduce((a, b) => { return a + b; }, 0));
+        setCartSubTotal(
+            cartItems
+                .map(item => cartItemProducts.find(product => product.id == item.product_id)?.price || 0)
+                .reduce((a, b) => { return a + b; }, 0)
+        );
     }
 
     const removeFromCart = (cartItem: CartItem) => {

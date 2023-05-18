@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Button, Table} from 'reactstrap';
 
+const currencyFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+});
+
 export interface OrderSummaryProps {
     subTotal: number;
     taxRate: number;
@@ -19,6 +24,7 @@ export const OrderSummary = ({
     const [grandTotal, setGrandTotal] = useState<number>(0);
 
     useEffect(() => {
+        console.log(`subTotal=${subTotal}`);
         setTotalTax(subTotal * taxRate);
     }, [subTotal, taxRate]);
 
@@ -32,19 +38,19 @@ export const OrderSummary = ({
             <Table>
                 <tr>
                     <th scope="row">Subtotal</th>
-                    <td>${subTotal}</td>
+                    <td>{currencyFormatter.format(subTotal)}</td>
                 </tr>
                 <tr>
                     <th scope="row">Tax</th>
-                    <td>${totalTax}</td>
+                    <td>{currencyFormatter.format(totalTax)}</td>
                 </tr>
                 <tr>
                     <th scope="row">Shipping</th>
-                    <td>${shipping}</td>
+                    <td>{currencyFormatter.format(shipping)}</td>
                 </tr>
                 <tr>
                     <th scope="row">TOTAL</th>
-                    <td>${grandTotal}</td>
+                    <td>{currencyFormatter.format(grandTotal)}</td>
                 </tr>
             </Table>
             <Button onClick={placeOrder}>Place order</Button>
