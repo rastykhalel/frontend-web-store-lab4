@@ -68,7 +68,6 @@ export const ShoppingCart = () => {
         apiClient.removeItemFromCart(id).then(() => {
             setCartItems(cartItems.filter(item => item.id != id ));
         });
-        setCartItems(cartItems.filter(item => item.id != id ));
     }
 
     const placeOrder = () => {
