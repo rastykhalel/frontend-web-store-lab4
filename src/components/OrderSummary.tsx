@@ -24,7 +24,6 @@ export const OrderSummary = ({
     const [grandTotal, setGrandTotal] = useState<number>(0);
 
     useEffect(() => {
-        console.log(`subTotal=${subTotal}`);
         setTotalTax(subTotal * taxRate);
     }, [subTotal, taxRate]);
 
