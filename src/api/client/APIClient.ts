@@ -45,7 +45,7 @@ class APIClient {
     // update an exiting product
     async updateProduct(product: Product): Promise<Product> {
         return new Promise<Product> ((resolve, reject) => {
-            httpClient.put<Product>(`/product/${product.productId}`, product).then((res) => {
+            httpClient.put<Product>(`/product/${product.id}`, product).then((res) => {
                 resolve(res.data)
             }).catch((err) => {
                 reject(new Error(err.response.data.message || "Unknown error"));
