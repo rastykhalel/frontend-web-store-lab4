@@ -47,10 +47,9 @@ export const Products = () => {
     }, [cartId])
 
     const addToCart = (product: Product) => {
-        apiClient.addItemToCart(cartId, {
-            cartId: cartId,
-            productId: product.productId!!,
-            price: product.price
+        apiClient.addItemToCart({
+            product_id: product.productId!!,
+            quantity: 1
         });
     }
 

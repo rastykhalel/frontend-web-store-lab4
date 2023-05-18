@@ -19,7 +19,7 @@ export const ShoppingCartItem = ({
     const [product, setProduct] = useState<Product>();
 
     useEffect(() => {
-        apiClient.getProductById(cartItem.productId).then((product) => {
+        apiClient.getProductById(cartItem.product_id).then((product) => {
             setProduct(product);
         });
 
@@ -35,7 +35,7 @@ export const ShoppingCartItem = ({
     return(
         <tr>
             <th scope="row">{product?.name}</th>
-            <td>${cartItem.price}</td>
+            <td>${product?.price}</td>
             <td>
                 <Button color="danger" onClick={() => { removeFromCart(cartItem) }}>
                     <Trash3Fill color="white" />
