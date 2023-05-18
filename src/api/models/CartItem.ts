@@ -3,14 +3,14 @@
 */
 export type CartItem = {
     // a unique identifier representing this item in a shopping cart
-    cartItemId?: string;
+    id?: string;
 
     // the identifier of the shopping cart this item belongs in
-    cartId: string;
+    user_id?: string;
 
     // the identifier of the product
-    productId: string;
+    product_id: string;
 
-    // the price of the item in the cart
-    price: number;
+    // the quantity of items
+    quantity: number;
 }
